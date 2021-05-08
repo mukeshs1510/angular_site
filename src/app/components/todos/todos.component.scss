@@ -19,11 +19,10 @@
   .content {
     flex: 1 1 100%;
   }
-
-  .done {
-    .content {
-      text-decoration: line-through;
-    }
+}
+.todo.done {
+  .content {
+    text-decoration: line-through;
   }
 }
 

@@ -10,6 +10,8 @@ export class TodosComponent implements OnInit {
 
   todos: Todo[];
 
+  inputTodo: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +23,25 @@ export class TodosComponent implements OnInit {
       content: 'second todo',
       isCompleted: true
     }]
+  }
+
+  toggleDone (id) {
+    this.todos.map((v, i) => {
+      if(i == id) v.isCompleted = !v.isCompleted;
+      return v;
+    })
+  }
+
+  deleteTodo(id) {
+    this.todos = this.todos.filter((v, i) => i !== id);
+  }
+
+  addTodo() {
+    this.todos.push({
+      content: this.inputTodo,
+      isCompleted: false
+    });
+    this.inputTodo = "";
   }
 
 }
