@@ -1,20 +1,52 @@
 <div class="todos">
+  <h3 class="py-3 d-flex justify-content-center">Todo</h3>
   <form (submit)="addTodo()">
     <input
       type="text"
       name="inputTodo"
-      placeholder="Enter todo..."
+      placeholder="Enter todo name..."
       class="todo-input"
       [(ngModel)]="inputTodo"
     />
+    <input
+      type="text"
+      name="inputTodoDesc"
+      placeholder="Enter todo description..."
+      class="todo-input"
+      [(ngModel)]="inputTodoDesc"
+    />
+    <input
+      type="date"
+      name="inputTodoDate"
+      class="todo-input"
+      [(ngModel)]="inputTodoDate"
+    />
     <input type="submit" value="Add Todo" class="todo-submit" />
   </form>
+  <button class="btn btn-primary my-3" routerLink="/alltodos">
+    See all Todos
+  </button>
+  <div class="todo">
+    <div>Id</div>
+    <div class="d-flex w-100 justify-content-between mx-2">
+      <div>Todo</div>
+      <div>Desc</div>
+      <div>Time</div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
   <div
     *ngFor="let todo of todos; let i = index"
     class="todo {{ todo.isCompleted ? 'done' : '' }}"
   >
     <div class="id">{{ i + 1 }}</div>
     <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+    <div class="content" (click)="toggleDone(i)">{{ todo.desc }}</div>
+    <div class="content" (click)="toggleDone(i)">{{ todo.date }}</div>
     <button class="delete" (click)="deleteTodo(i)">Remove</button>
   </div>
 </div>
+
+<!-- input and output decorative -->
+<!-- angular templete driven -->

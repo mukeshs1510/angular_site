@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-todos',
@@ -11,17 +12,17 @@ export class TodosComponent implements OnInit {
   todos: Todo[];
 
   inputTodo: string = "";
+  inputTodoDesc: string = "";
+  inputTodoDate: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
     this.todos = [{
-      content: 'First todo',
-      isCompleted: false
-    },
-    {
-      content: 'second todo',
-      isCompleted: true
+      content: '',
+      isCompleted: false,
+      desc: '',
+      date: ''
     }]
   }
 
@@ -39,7 +40,9 @@ export class TodosComponent implements OnInit {
   addTodo() {
     this.todos.push({
       content: this.inputTodo,
-      isCompleted: false
+      isCompleted: false,
+      desc: this.inputTodoDesc,
+      date: this.inputTodoDate
     });
     this.inputTodo = "";
   }
