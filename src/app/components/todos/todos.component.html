@@ -1,6 +1,9 @@
 <div class="todos">
   <h3 class="py-3 d-flex justify-content-center">Todo</h3>
   <form (submit)="addTodo()">
+    <h6>
+      <b>{{ errorMessage }}</b>
+    </h6>
     <input
       type="text"
       name="inputTodo"
@@ -21,8 +24,15 @@
       class="todo-input"
       [(ngModel)]="inputTodoDate"
     />
-    <input type="submit" value="Add Todo" class="todo-submit" />
+    <button
+      class="btn btn-primary mt-2 px-5"
+      [disabled]="!inputTodo || !inputTodoDesc || !inputTodoDate"
+      (click)="addTodo()"
+    >
+      Add Todo
+    </button>
   </form>
+
   <button class="btn btn-primary my-3" routerLink="/alltodos">
     See all Todos
   </button>

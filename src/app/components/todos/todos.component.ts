@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { CrudService } from '../service/crud.service';
 
 @Component({
   selector: 'app-todos',
@@ -14,8 +14,9 @@ export class TodosComponent implements OnInit {
   inputTodo: string = "";
   inputTodoDesc: string = "";
   inputTodoDate: string = "";
+  errorMessage: string = "";
 
-  constructor() { }
+  constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {
     this.todos = [{
@@ -37,14 +38,38 @@ export class TodosComponent implements OnInit {
     this.todos = this.todos.filter((v, i) => i !== id);
   }
 
+
   addTodo() {
-    this.todos.push({
-      content: this.inputTodo,
-      isCompleted: false,
-      desc: this.inputTodoDesc,
-      date: this.inputTodoDate
+    let Todos = {};
+    Todos['title'] = this.inputTodo;
+    Todos['desc'] = this.inputTodoDesc;
+    Todos['date'] = this.inputTodoDate;
+
+    this.crudService.create_new_todo(Todos).then(res => {
+      this.inputTodo = "";
+      this.inputTodoDesc = "";
+      this.inputTodoDate = "";
+      this.errorMessage = "Todos data saved successfully";
+      console.log(res);
+    }).catch(error => {
+      this.errorMessage = "Something went wrong";
+      console.log(error);
     });
-    this.inputTodo = "";
+
   }
+  
+  // addTodo() {
+  //   this.todos.push({
+  //     content: this.inputTodo,
+  //     isCompleted: false,
+  //     desc: this.inputTodoDesc,
+  //     date: this.inputTodoDate
+  //   });
+  //   this.inputTodo = "";
+  //   this.inputTodoDate = "";
+  //   this.inputTodoDesc = "";
+  // }
+
+  // 
 
 }

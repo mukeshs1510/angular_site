@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "todo-angular-f6670": {
+      "hosting": {
+        "splixcube": [
+          "todo-angular-f6670"
+        ]
+      }
+    }
+  }
+}
