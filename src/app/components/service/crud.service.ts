@@ -8,9 +8,10 @@ export class CrudService {
 
   constructor(public fireService: AngularFirestore) { }
 
-
   create_new_todo(Todos) {
+    console.log("running")
       return this.fireService.collection('todos').add(Todos);
+
   }
 
 }

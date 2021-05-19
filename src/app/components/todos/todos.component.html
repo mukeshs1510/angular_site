@@ -1,6 +1,6 @@
 <div class="todos">
   <h3 class="py-3 d-flex justify-content-center">Todo</h3>
-  <form (submit)="addTodo()">
+  <form>
     <h6>
       <b>{{ errorMessage }}</b>
     </h6>
@@ -54,7 +54,12 @@
     <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
     <div class="content" (click)="toggleDone(i)">{{ todo.desc }}</div>
     <div class="content" (click)="toggleDone(i)">{{ todo.date }}</div>
-    <button class="delete" (click)="deleteTodo(i)">Remove</button>
+    <button
+      class="delete bg-danger rounded-pill text-white px-1"
+      (click)="deleteTodo(i)"
+    >
+      Remove
+    </button>
   </div>
 </div>
 

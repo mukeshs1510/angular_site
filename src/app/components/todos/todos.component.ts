@@ -19,12 +19,12 @@ export class TodosComponent implements OnInit {
   constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {
-    this.todos = [{
-      content: '',
-      isCompleted: false,
-      desc: '',
-      date: ''
-    }]
+    // this.todos = [{
+    //   content: '',
+    //   isCompleted: false,
+    //   desc: '',
+    //   date: ''
+    // }]
   }
 
   toggleDone (id) {
