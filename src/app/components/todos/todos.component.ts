@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Todo } from 'src/app/models/Todo';
 import { CrudService } from '../service/crud.service';
 
@@ -7,6 +8,7 @@ import { CrudService } from '../service/crud.service';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
+
 export class TodosComponent implements OnInit {
 
   todos: Todo[];
@@ -14,17 +16,15 @@ export class TodosComponent implements OnInit {
   inputTodo: string = "";
   inputTodoDesc: string = "";
   inputTodoDate: string = "";
-  errorMessage: string = "";
+  isCompleted: boolean = false;
 
-  constructor(public crudService: CrudService) { }
+  constructor(public crudService: CrudService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // this.todos = [{
-    //   content: '',
-    //   isCompleted: false,
-    //   desc: '',
-    //   date: ''
-    // }]
+    this.crudService.getAllTodos().subscribe(res => {
+      this.todos = res
+      console.log(this.todos);
+    });
   }
 
   toggleDone (id) {
@@ -38,7 +38,6 @@ export class TodosComponent implements OnInit {
     this.todos = this.todos.filter((v, i) => i !== id);
   }
 
-
   addTodo() {
     let Todos = {};
     Todos['title'] = this.inputTodo;
@@ -49,13 +48,14 @@ export class TodosComponent implements OnInit {
       this.inputTodo = "";
       this.inputTodoDesc = "";
       this.inputTodoDate = "";
-      this.errorMessage = "Todos data saved successfully";
-      console.log(res);
+      this.toastMessage("Submitted successfully","Todo Submit");
     }).catch(error => {
-      this.errorMessage = "Something went wrong";
       console.log(error);
     });
+  }
 
+  toastMessage(textMessage: string, textTitle: string) {
+    this.toastr.success(textMessage, textTitle);
   }
   
   // addTodo() {
