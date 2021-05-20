@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { Todo } from 'src/app/models/Todo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
+
+  todos: Todo;
 
   constructor(public fireService: AngularFirestore) { }
 

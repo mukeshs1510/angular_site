@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Todo } from 'src/app/models/Todo';
+import { SharedserviceService } from 'src/app/services/sharedservice.service';
 import { CrudService } from '../service/crud.service';
 
 @Component({
@@ -18,17 +19,16 @@ export class TodosComponent implements OnInit {
   inputTodoDate: string = "";
   isCompleted: boolean = false;
 
-  constructor(public crudService: CrudService, private toastr: ToastrService) { }
+  id: string = "";
+
+  constructor(public crudService: CrudService, private toastr: ToastrService, private sharedService: SharedserviceService) { }
 
   ngOnInit(): void {
-    
-  }
-
-  toggleDone (id) {
-    this.todos.map((v, i) => {
-      if(i == id) v.isCompleted = !v.isCompleted;
-      return v;
-    })
+    var id = this.sharedService.getId();
+    if(id != null) {
+      this.id = id;
+      console.log("id: "+id);
+    }
   }
 
   deleteTodo(id) {
