@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from 'src/app/models/Todo';
+import { CrudService } from '../service/crud.service';
 
 @Component({
   selector: 'app-alltodos',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlltodosComponent implements OnInit {
 
-  constructor() { }
+  todos: Todo[];
+
+  inputTodo: string = "";
+  inputTodoDesc: string = "";
+  inputTodoDate: string = "";
+  isCompleted: boolean = false;
+
+  constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {
+    this.crudService.getAllTodos().subscribe(res => {
+      this.todos = res
+    });
   }
 
 }

@@ -1,1 +1,59 @@
-<p>alltodos works!</p>
+<div
+  class="py-3 d-flex justify-content-center"
+  style="font-weight: bold; font-size: 18px"
+>
+  All todos
+</div>
+<div class="col-md-12 col-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Todo</th>
+        <th scope="col">Desc</th>
+        <th scope="col">Time</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody
+      *ngFor="let todo of todos; let i = index"
+      class="todo {{ todo.isCompleted ? 'done' : '' }}"
+    >
+      <tr class="t-row">
+        <th scope="row">{{ i + 1 }}</th>
+        <td class="content" (click)="toggleDone(i)">{{ todo.title }}</td>
+        <td class="content" (click)="toggleDone(i)">{{ todo.desc }}</td>
+        <td class="content" (click)="toggleDone(i)">{{ todo.date }}</td>
+        <td>
+          <button
+            class="delete bg-danger rounded-pill text-white px-1"
+            (click)="deleteTodo(i)"
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- 
+<div class="todo">
+  <div class="text-heading">Id</div>
+  <div class="d-flex w-100 justify-content-between mx-2">
+    <div class="text-heading">Todo</div>
+    <div class="text-heading">Desc</div>
+    <div class="text-heading">Time</div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<div
+  *ngFor="let todo of todos; let i = index"
+  class=" todo {{ todo.isCompleted ? 'done' : '' }}"
+>
+  <div class="id">{{ i + 1 }}</div>
+  <div class="content" (click)="toggleDone(i)">{{ todo.title }}</div>
+  <div class="content" (click)="toggleDone(i)">{{ todo.desc }}</div>
+  <div class="content" (click)="toggleDone(i)">{{ todo.date }}</div>
+</div> -->

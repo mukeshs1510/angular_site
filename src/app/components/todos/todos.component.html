@@ -34,31 +34,6 @@
       <button class="btn btn-primary my-3" routerLink="/alltodos">
         See all Todos
       </button>
-      <div class="todo">
-        <div>Id</div>
-        <div class="d-flex w-100 justify-content-between mx-2">
-          <div>Todo</div>
-          <div>Desc</div>
-          <div>Time</div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-      <div
-        *ngFor="let todo of todos; let i = index"
-        class=" todo {{ todo.isCompleted ? 'done' : '' }}"
-      >
-        <div class="id">{{ i + 1 }}</div>
-        <div class="content" (click)="toggleDone(i)">{{ todo.title }}</div>
-        <div class="content" (click)="toggleDone(i)">{{ todo.desc }}</div>
-        <div class="content" (click)="toggleDone(i)">{{ todo.date }}</div>
-        <button
-          class="delete bg-danger rounded-pill text-white px-1"
-          (click)="deleteTodo(i)"
-        >
-          Remove
-        </button>
-      </div>
     </div>
   </div>
 </div>

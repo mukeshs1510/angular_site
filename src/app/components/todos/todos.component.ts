@@ -21,10 +21,7 @@ export class TodosComponent implements OnInit {
   constructor(public crudService: CrudService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.crudService.getAllTodos().subscribe(res => {
-      this.todos = res
-      console.log(this.todos);
-    });
+    
   }
 
   toggleDone (id) {
